@@ -31,11 +31,20 @@ namespace GlowingFuck
 
         static void Main(string[] args)
         {
+            bool timing = false;
+
+            if (args.Length > 0)
+            {
+                timing = args.Contains("--time");
+            }
+
             tape.Add(0);
             int inputPos = 0;
             string input = Console.ReadLine();
             while (input != null)
             {
+                DateTime start = DateTime.Now;
+
                 while (inputPos < input.Length)
                 {
                     switch (input[inputPos])
@@ -93,7 +102,16 @@ namespace GlowingFuck
                     ++inputPos;
                 }
 
+                DateTime end = DateTime.Now;
+
                 Console.WriteLine();
+
+                if (timing)
+                {
+                    TimeSpan duration = end - start;
+                    Console.WriteLine("Runtime: {0}", duration.TotalSeconds);
+                }
+
                 input = Console.ReadLine();
                 inputPos = 0;
             }
