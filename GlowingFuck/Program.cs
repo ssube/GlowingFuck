@@ -93,6 +93,7 @@ namespace GlowingFuck
                     ++inputPos;
                 }
 
+                Console.WriteLine();
                 input = Console.ReadLine();
                 inputPos = 0;
             }
